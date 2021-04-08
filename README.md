@@ -6,7 +6,6 @@
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false unique: true |
 | email              | string | null: false unique: true |
-| password           | string | null: false              |
 | encrypted_password | string | null: false              |
 | kanji_last_name    | string | null: false              |
 | kanji_fist_name    | string | null: false              |
@@ -38,10 +37,10 @@
 
 ##　purchaseテーブル
 
-| Column   | Type       | Options                       |
-| -------- | ---------- | ----------------------------- |
-| users    | references | null: false foreign_key: true |
-| items    | references | null: false foreign_key: true |
+| Column  | Type       | Options                       |
+| ------- | ---------- | ----------------------------- |
+| user    | references | null: false foreign_key: true |
+| item    | references | null: false foreign_key: true |
 
 ### Association
 - belongs_to :user 
