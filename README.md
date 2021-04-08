@@ -21,13 +21,13 @@
 
 | Column       | Type       | Options                       |
 | ------------ | ---------- | ----------------------------- |
-| product      | text       | null: false                   |
+| product      | string     | null: false                   |
 | explanation  | text       | null: false                   |
-| category     | text       | null: false                   |
-| status       | string     | null: false                   |
-| burden       | string     | null: false                   |
-| area         | string     | null: false                   |
-| days         | string     | null: false                   |
+| category     | integer    | null: false                   |
+| status       | integer    | null: false                   |
+| burden       | integer    | null: false                   |
+| area         | integer    | null: false                   |
+| days         | integer    | null: false                   |
 | price        | integer    | null: false                   |
 | user_id      | references | null: false foreign_key: true |
 
