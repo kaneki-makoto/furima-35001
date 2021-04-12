@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  KANJI_NAME_REGEX =
 
   validates :nickname, :kanji_last_name, :kanji_fist_name, :kana_last_name, :kana_fist_name, :birthday, presence: true
   validates_format_of :password, with: PASSWORD_REGEX
