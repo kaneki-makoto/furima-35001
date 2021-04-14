@@ -9,6 +9,8 @@ class Item < ApplicationRecord
   belongs_to :day
 
   validates :product, :image, :explanation, :category_id, :status_id, :burden_id, :area_id, :day_id, :price, presence:true
+  validates :product, length: {maximum: 40 }
+  validates :explanation, length: {maximum: 1000 }
   validates :category_id, numericality: { other_than: 1 }
   validates :status_id, numericality: { other_than: 1 }
   validates :burden_id,numericality: { other_than: 1 }
