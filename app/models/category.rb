@@ -14,14 +14,3 @@ class Category < ActiveHash::Base
   include ActiveHash::Associations
   has_many :items
 end
-
-# 選択肢一覧 #
-# レディース
-# メンズ
-# ベビー・グッズ
-# インテリア・住まい・小物
-# 本・音楽・ゲーム
-# おもちゃ・ホビー・グッズ
-# 家電・スマホ・カメラ
-# スポーツ・レジャー
-# その他
