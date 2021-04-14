@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
 
   validates :nickname, :kanji_last_name, :kanji_fist_name, :kana_last_name, :kana_fist_name, :birthday, presence: true
   validates_format_of :password, with: PASSWORD_REGEX
@@ -18,5 +18,5 @@ class User < ApplicationRecord
     validates :kana_fist_name
   end
 
-    has_many :items
+  has_many :items
 end

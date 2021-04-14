@@ -7,8 +7,7 @@ class Day < ActiveHash::Base
   ]
   include ActiveHash::Associations
   has_many :items
-
-  end
+end
 
 # 選択肢一覧 #
 # 1〜2日で発送
