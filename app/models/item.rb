@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :product, length: { maximum: 40 }
   validates :explanation, length: { maximum: 1000 }
   with_options numericality: { other_than: 1 } do
-    validates :category_id, :status_id,  :burden_id, :area_id,  :day_id
+    validates :category_id, :status_id,  :burden_id, :area_id, :day_id
   end
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
