@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :contributor_confirmation,only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
 
   def index
@@ -21,21 +22,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # @item = Item.find(params[:id])
   end
 
   def edit
-    # @item = Item.find(params[:id])
-    unless current_user == @item.user
-      redirect_to action: :index
-    end
   end
 
   def update
-    # @item = Item.find(params[:id])
-    unless current_user == @item.user
-      redirect_to action: :index
-    end
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
@@ -43,8 +35,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  def
-    destroy
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
   end
 
   private
@@ -56,5 +52,11 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def contributor_confirmation
+    unless current_user == @item.user
+      redirect_to action: :index
+    end
   end
 end
