@@ -1,15 +1,14 @@
 class PurchasesController < ApplicationController
-  before_action :item, only:[:index, :create]
+  before_action :item, only: [:index, :create]
+  before_action :after_purchase, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
   before_action :contributor_confirmation, only: [:index, :create]
 
   def index
-    # @item = Item.find(params[:item_id])
     @purchase_shipping = PurchaseShipping.new
   end
 
   def create
-    # @item = Item.find(params[:item_id])
     @purchase_shipping = PurchaseShipping.new(purchase_params)
     if @purchase_shipping.valid?
       pya_item
@@ -39,7 +38,13 @@ class PurchasesController < ApplicationController
   end
 
   def contributor_confirmation
-    if current_user == @item.user_id
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def after_purchase
+    if @item.purchase.present?
       redirect_to root_path
     end
   end
