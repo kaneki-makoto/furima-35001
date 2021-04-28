@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :after_purchase, only:[:edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
@@ -55,5 +56,11 @@ class ItemsController < ApplicationController
 
   def contributor_confirmation
     redirect_to action: :index unless current_user == @item.user
+  end
+
+  def after_purchase
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 end
