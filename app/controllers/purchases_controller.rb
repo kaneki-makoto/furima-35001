@@ -1,6 +1,5 @@
 class PurchasesController < ApplicationController
   before_action :item, only: [:index, :create]
-  before_action :after_purchase, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
   before_action :contributor_confirmation, only: [:index, :create]
 
@@ -38,14 +37,9 @@ class PurchasesController < ApplicationController
   end
 
   def contributor_confirmation
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || @item.purchase.present?
       redirect_to root_path
     end
   end
 
-  def after_purchase
-    if @item.purchase.present?
-      redirect_to root_path
-    end
-  end
 end

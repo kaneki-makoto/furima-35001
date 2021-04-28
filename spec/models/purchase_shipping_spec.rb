@@ -22,6 +22,12 @@ RSpec.describe PurchaseShipping, type: :model do
     end
 
     context '商品出品が登録できないとき' do
+      it 'tokenがからの時登録できない' do
+        @purchase.token = ""
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Token can't be blank")
+      end
+
       it 'item_idが空のとき登録できない' do
         @purchase.item_id = nil
         @purchase.valid?
