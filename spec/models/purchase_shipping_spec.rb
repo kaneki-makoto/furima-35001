@@ -82,8 +82,13 @@ RSpec.describe PurchaseShipping, type: :model do
           expect(@purchase.errors.full_messages).to include("Number is invalid")
         end
 
-      end
+        it 'numberが数字以外のとき登録できない' do
+          @purchase.number = "1111111111a"
+          @purchase.valid?
+          expect(@purchase.errors.full_messages).to include("Number is invalid")
+        end
 
+      end
 
   end
 end
